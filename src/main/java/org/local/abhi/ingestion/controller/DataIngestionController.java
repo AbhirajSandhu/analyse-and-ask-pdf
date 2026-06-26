@@ -1,6 +1,8 @@
 package org.local.abhi.ingestion.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.local.abhi.ingestion.model.IngestionResponse;
+import org.local.abhi.ingestion.service.DataIngestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ import static org.local.abhi.commons.Constants.REQUEST_PATH;
 
 @RestController
 @RequestMapping(REQUEST_PATH)
+@RequiredArgsConstructor
 public class DataIngestionController {
+
+    private final DataIngestionService dataIngestionService;
 
     @PostMapping("/upload-and-analyse")
     public ResponseEntity<IngestionResponse> ingestPdf(
