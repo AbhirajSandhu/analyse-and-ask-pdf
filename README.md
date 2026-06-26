@@ -30,16 +30,7 @@ docker exec -it enterprise-vector-db psql -U my-local-dev -d vector_db
 <i>Alternatively you can download UI application for postgres.</i>
 
 
-# 2. R U L E S <br> for db script execution
-
-Init setup for db should have order in which sql to be executed marked with number prefix.  
-Example -
-1. 01-First-Execution.sql
-2. 02-Second-Execution.sql
-
-
-
-# 3. DEV Utilities
+# 2. DEV Utilities
 
 ./gradlew clean build  
 ./gradlew clean build --refresh-dependencies
