@@ -1,0 +1,45 @@
+### TODO
+Current Liquibase execution runs at the startup as enabled in application.yml, 
+this approach can be optimized as any issues in sql scripts can cause application startup failure  
+Also, we can delegate this task to init service 
+
+# 1. Run Postgres Locally
+
+## D O C K E R <br> G U I D E
+<b>R U N</b> - <i>start the db server</i>  
+docker compose up -d
+
+<b>S T O P</b> - <i>stop the db server</i>  
+docker compose down
+
+<b>R E F R E S H</b> - <i>refresh the volumes mounted through docker-compose</i>  
+docker volume rm $(docker volume ls -q | grep postgres_vector_data)
+
+<b>L O G S</b> - <i>cmd for logs</i>  
+docker compose logs postgres-vector
+
+<i>I will suggest to download docker app to view live logs and start/stop server.</i>
+
+## D B <br> A C C E S S <br> G U I D E
+<b>D A T A B A S E</b> - <i>access database from terminal</i>  
+docker exec -it enterprise-vector-db psql -U my-local-dev -d vector_db
+
+<b>Q U I T</b> - <i>quit</i>  
+\q
+
+<i>Alternatively you can download UI application for postgres.</i>
+
+
+# 2. R U L E S <br> for db script execution
+
+Init setup for db should have order in which sql to be executed marked with number prefix.  
+Example -
+1. 01-First-Execution.sql
+2. 02-Second-Execution.sql
+
+
+
+# 3. DEV Utilities
+
+./gradlew clean build  
+./gradlew clean build --refresh-dependencies

@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: analyse-and-ask-pdf
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    user: postgres
+    password: my-local-dev-pswd
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vector_db
+    username: my-local-dev
+    password: my-local-dev-pswd
+    driver-class-name: org.postgresql.Driver
+
+  ai:
+    model:
+      chat:
+        enabled: huggingface
+    huggingface:
+      chat:
+        api-key: ${HUGGINGFACE_API_KEY}
+        url: https://huggingface.co
+    vectorstore:
+      pgvector:
+        database-name: vector_db
+        schema-name: public
+        table-name: vector_store
+        initialize-schema: false # Disabled so Liquibase handles it exclusively
+        dimensions: 384
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    liquibase: INFO
+    org.liquibase: INFO
