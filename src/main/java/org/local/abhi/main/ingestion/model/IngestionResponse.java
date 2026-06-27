@@ -1,4 +1,4 @@
-package org.local.abhi.ingestion.model;
+package org.local.abhi.main.ingestion.model;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
@@ -8,8 +8,8 @@ import lombok.Builder;
 public class IngestionResponse {
     @Nullable
     private String fileMetadata;
-    @Nullable
-    private String fileSize;
+    @Builder.Default
+    private long fileSize = 0;
     @Nonnull
     private String message;
 }
