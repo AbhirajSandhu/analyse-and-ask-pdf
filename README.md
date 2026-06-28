@@ -24,8 +24,8 @@ docker volume rm $(docker volume ls -q | grep postgres_vector_data)
 
 ## D B <br> A C C E S S <br> G U I D E
 <b>D A T A B A S E</b> - <i>access database from terminal</i>   
-docker exec -it enterprise-vector-db psql -U my-local-dev -d vector_db   
-docker exec -it enterprise-vector-db psql -U postgres -d vector_db
+docker exec -it ana-vector-db psql -U my-local-dev -d vector_db   
+docker exec -it ana-vector-db psql -U postgres -d vector_db
 
 <b>Q U I T</b> - <i>quit</i>  
 \q

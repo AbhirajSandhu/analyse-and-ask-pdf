@@ -3,13 +3,15 @@ version: '3.8'
 services:
   postgres-vector:
     image: pgvector/pgvector:pg16
-    container_name: enterprise-vector-db
+    container_name: ana-vector-db
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: vector_db
       POSTGRES_USER: postgres               # This is admin user
       POSTGRES_PASSWORD: my-local-dev-pswd
+    volumes:
+      - postgres_vector_data:/var/lib/postgresql/data  # To make data persistent after refreshing docker run
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d vector_db"]
       interval: 5s
