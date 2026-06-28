@@ -51,7 +51,19 @@ LIMIT 3;
 <i>Alternatively you can download UI application for postgres.</i>
 
 
-# 2. DEV Utilities
+# 2. API Curl Requests
+
+<b>Ingest File -</b>  
+
+curl --location 'http://localhost:8080/analyse-and-ask/v1/upload-and-analyse' \
+--header 'Content-Type: multipart/form-data' \
+--header 'Accept: application/json' \
+--form 'file=@"<File-Path>"'
+
+
+
+
+# 3. DEV Utilities
 
 ./gradlew clean build  
 ./gradlew clean build --refresh-dependencies
