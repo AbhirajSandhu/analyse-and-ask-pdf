@@ -1,0 +1,8 @@
+Ingest File -
+
+curl --location 'http://localhost:8080/analyse-and-ask/v1/upload-and-analyse' \
+--header 'Content-Type: multipart/form-data' \
+--header 'Accept: application/json' \
+--form 'file=@"<File-Path>"'
+
+

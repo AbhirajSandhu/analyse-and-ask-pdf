@@ -1,8 +1,10 @@
-package org.local.abhi.ingestion.controller;
+package org.local.abhi.main.ingestion.controller;
 
+import jakarta.annotation.Nonnull;
 import lombok.RequiredArgsConstructor;
-import org.local.abhi.ingestion.model.IngestionResponse;
-import org.local.abhi.ingestion.service.DataIngestionService;
+import lombok.extern.slf4j.Slf4j;
+import org.local.abhi.main.ingestion.model.IngestionResponse;
+import org.local.abhi.main.ingestion.service.DataIngestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
-import static org.local.abhi.commons.Constants.REQUEST_PATH;
+import static org.local.abhi.main.commons.constants.Constants.REQUEST_PATH;
 
 
+@Slf4j
 @RestController
 @RequestMapping(REQUEST_PATH)
 @RequiredArgsConstructor
@@ -22,10 +25,11 @@ public class DataIngestionController {
 
     @PostMapping("/upload-and-analyse")
     public ResponseEntity<IngestionResponse> ingestPdf(
-            @RequestParam(required = false) MultipartFile pdfFile,
+            @RequestParam @Nonnull MultipartFile file,
             @RequestHeader Map<String, String> requestHeaders
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(IngestionResponse.builder().message("Successfully Uploaded!!!").build());
+        // TODO: Extract user details from auth token / identity context
+        return dataIngestionService.processPdfFile(file, "local-user");
     }
 
     @GetMapping("/ask-the-bot")

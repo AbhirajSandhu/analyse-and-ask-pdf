@@ -1,13 +1,12 @@
-package org.local.abhi.app;
+package org.local.abhi.main.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
 @SpringBootApplication(
         scanBasePackages = {
-                "org.local.abhi.controller"
+                "org.local.abhi.main.ingestion"
         }
 )
 public class AnalyseAndAskApp {

@@ -32,8 +32,8 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 server:
   port: 8080
@@ -43,3 +43,10 @@ logging:
     root: INFO
     liquibase: INFO
     org.liquibase: INFO
+
+document-tokenization:
+  chunk-size: ${ENV_VAR_CHUNK_SIZE:800}
+  min-chunk-size-chars: ${ENV_VAR_MIN_CHUNK_SIZE_CHARS:150}
+  min-chunk-length-to-be-embedded: ${ENV_VAR_MIN_CHUNK_LEN_TO_BE_EMBEDDED:5}
+  min-num-chunks: ${ENV_VAR_MIN_NUM_CHUNKS:10000}
+  keep-separator: ${ENV_VAR_KEEP_SEPARATOR:true}
